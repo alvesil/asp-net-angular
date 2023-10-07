@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class AlunosComponent {
 
   public titulo = 'Alunos';
+  public alunoSelecionado!: string;
 
   public alunos = [
     { 
@@ -53,4 +54,13 @@ export class AlunosComponent {
       telefone: 33654877
     }
   ];
+
+  selecionarAluno(aluno: any)
+  {
+    this.alunoSelecionado = aluno.nome;
+  }
+  voltar()
+  {
+    this.alunoSelecionado = '';
+  }
 }
