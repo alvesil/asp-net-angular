@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Aluno } from '../models/Aluno';
 
 @Component({
   selector: 'app-alunos',
@@ -8,7 +9,7 @@ import { Component } from '@angular/core';
 export class AlunosComponent {
 
   public titulo = 'Alunos';
-  public alunoSelecionado!: string;
+  public alunoSelecionado!: Aluno;
 
   public alunos = [
     { 
@@ -55,12 +56,12 @@ export class AlunosComponent {
     }
   ];
 
-  selecionarAluno(aluno: any)
+  selecionarAluno(aluno: Aluno)
   {
-    this.alunoSelecionado = aluno.nome;
+    this.alunoSelecionado = aluno;
   }
   voltar()
   {
-    this.alunoSelecionado = '';
+    this.alunoSelecionado == null;
   }
 }

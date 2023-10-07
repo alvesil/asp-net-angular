@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Professor } from '../models/Professor';
 
 @Component({
   selector: 'app-professores',
@@ -7,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class ProfessoresComponent {
   public titulo = 'Professores';
-  public professorSelecionado!: string;
+  public professorSelecionado: Professor = new Professor;
 
   public professores = [
     { id: 1, nome: 'Roberto', disciplina: 'Matemática'},
@@ -15,13 +16,13 @@ export class ProfessoresComponent {
     { id: 3, nome: 'Joana', disciplina: 'Geografia' }
   ];
 
-  selecionarProfessor(professor: any)
+  selecionarProfessor(professor: Professor)
   {
-    this.professorSelecionado = professor.nome;
+    this.professorSelecionado = professor;
   }
 
   voltar()
   {
-    this.professorSelecionado = '';
+    this.professorSelecionado == null;
   }
 }
