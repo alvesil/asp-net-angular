@@ -7,4 +7,15 @@ import { Component } from '@angular/core';
 })
 export class AlunosComponent {
 
+  public titulo = 'Alunos';
+
+  public alunos = [
+    { nome:'Marta'},
+    { nome:'Paula'},
+    { nome:'Laura'},
+    { nome:'Luiza'},
+    { nome:'Lucas'},
+    { nome:'Pedro'},
+    { nome:'Paulo'}
+  ];
 }

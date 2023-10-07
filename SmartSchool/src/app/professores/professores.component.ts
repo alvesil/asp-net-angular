@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./professores.component.css']
 })
 export class ProfessoresComponent {
+  public titulo = 'Professores';
 
+  public professores = [
+    { nome: 'Roberto'},
+    { nome: 'Luis' },
+    { nome: 'Joana' }
+  ];
 }
