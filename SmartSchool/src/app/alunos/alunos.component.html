@@ -1,47 +1,49 @@
-<div *ngIf="alunoSelecionado">
-    <div class="row">
-        <div class="col float-start">
-            <app-titulo [titulo]="'Aluno: '+ alunoSelecionado"></app-titulo>
+<div class="row">
+    <div class="col-6" *ngIf="alunoSelecionado">
+        <div class="row">
+            <div class="col float-start">
+                <app-titulo [titulo]="'Aluno: '+ alunoSelecionado.nome"></app-titulo>
+            </div>
+            <div class="col float-end">
+                <button class="btn btn-outline-danger float-end mt-2" (click)="voltar()">Fechar</button>
+            </div>
         </div>
-        <div class="col float-end">
-            <button class="btn btn-secondary float-end mt-2" (click)="voltar()">Alunos</button>
-        </div>
+        <form [formGroup]="alunoForm" (submit)="alunoSubmit()" class="mt-2">
+            <div class="mb-3">
+              <label class="form-label">Nome</label>
+              <input formControlName="nome" type="text" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Sobrenome</label>
+              <input formControlName="sobrenome" type="text" class="form-control">
+            </div>
+            <div class="mb-3 form-label">
+              <label class="form-label">Telefone</label>
+              <input formControlName="telefone" type="number" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="!alunoForm.valid">Atualizar</button>
+        </form>
+    
     </div>
-    <form class="mt-2">
-        <div class="mb-3">
-          <label class="form-label">Nome</label>
-          <input type="text" class="form-control">
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Sobrenome</label>
-          <input type="text" class="form-control">
-        </div>
-        <div class="mb-3 form-label">
-          <label class="form-label">Telefone</label>
-          <input type="text" maxlength="11" class="form-control">
-        </div>
-        <button type="submit" class="btn btn-primary">Atualizar</button>
-    </form>
-
-</div>
-<div *ngIf="!alunoSelecionado">
-    <app-titulo [titulo]="titulo"></app-titulo>
-    <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Sobrenome</th>
-            <th scope="col">Telefone</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let aluno of alunos" style="cursor: pointer;" (click)="selecionarAluno(aluno)">
-            <td scope="row">{{aluno.id}}</td>
-            <td>{{aluno.nome}}</td>
-            <td>{{aluno.sobrenome}}</td>
-            <td>{{aluno.telefone}}</td>
-          </tr>
-        </tbody>
-    </table>
+    <div [ngClass]="{'col-6' : alunoSelecionado, 'col-12' : !alunoSelecionado}">
+        <app-titulo [titulo]="titulo"></app-titulo>
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Sobrenome</th>
+                <th scope="col">Telefone</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let aluno of alunos" style="cursor: pointer;" (click)="selecionarAluno(aluno)">
+                <td scope="row">{{aluno.id}}</td>
+                <td>{{aluno.nome}}</td>
+                <td>{{aluno.sobrenome}}</td>
+                <td>{{aluno.telefone}}</td>
+              </tr>
+            </tbody>
+        </table>
+    </div>    
 </div>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Aluno } from '../models/Aluno';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-alunos',
@@ -8,8 +9,9 @@ import { Aluno } from '../models/Aluno';
 })
 export class AlunosComponent {
 
+  public alunoForm!: FormGroup;
   public titulo = 'Alunos';
-  public alunoSelecionado!: Aluno;
+  public alunoSelecionado: Aluno | null = null;
 
   public alunos = [
     { 
@@ -56,12 +58,30 @@ export class AlunosComponent {
     }
   ];
 
+  constructor(private fb: FormBuilder)
+  {
+    this.criarForm();
+  }
+
   selecionarAluno(aluno: Aluno)
   {
     this.alunoSelecionado = aluno;
+    this.alunoForm.patchValue(aluno);
+  }
+
+  alunoSubmit(){
+    console.log(this.alunoForm.value);
+  }
+
+  criarForm(){
+    this.alunoForm = this.fb.group({
+      nome: ['', Validators.required],
+      sobrenome: ['', Validators.required],
+      telefone: ['', Validators.required]
+    });
   }
   voltar()
   {
-    this.alunoSelecionado == null;
+    this.alunoSelecionado = null;
   }
 }
