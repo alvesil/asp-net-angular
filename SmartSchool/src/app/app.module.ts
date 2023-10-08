@@ -12,6 +12,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavComponent } from './nav/nav.component';
 import { TituloComponent } from './titulo/titulo.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { TituloComponent } from './titulo/titulo.component';
     BsDropdownModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
 import { Professor } from '../models/Professor';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-professores',
@@ -8,9 +9,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./professores.component.css']
 })
 export class ProfessoresComponent {
+
   public titulo = 'Professores';
   public professorSelecionado: Professor | null = null;
   public professorForm! : FormGroup;
+  public modalRef!: BsModalRef;
 
   public professores = [
     { id: 1, nome: 'Roberto', disciplina: 'Matemática'},
@@ -18,7 +21,12 @@ export class ProfessoresComponent {
     { id: 3, nome: 'Joana', disciplina: 'Geografia' }
   ];
 
-  constructor(private fb: FormBuilder){
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
+  
+  constructor(private fb: FormBuilder,
+              private modalService: BsModalService){
     this.criarForm();
   }
 
